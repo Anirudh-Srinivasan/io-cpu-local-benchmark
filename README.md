@@ -1,12 +1,12 @@
 # Synch run results
 
-Looped Io call -> cpu call back to back for 50 times
+Looped Io call -> cpu call back to back for 100 times, collecting the result
 
 | Sno | Run Time (ms) |
-|-----| ------------- |
-| 1   | 19354.10      |
-| 2   | 20092.57      |
-| 3   | 19763.92      |
-| 4   | 20517.53      |
-| 5   | 20122.61      |
-| Average | 19970.15      |
+|-----|---------------|
+| 1   | 39306.42      |
+| 2   | 39730.92      |
+| 3   | 38751.84      |
+| 4   | 38966.17      |
+| 5   | 39312.48      |
+| Average | 39213.57      |

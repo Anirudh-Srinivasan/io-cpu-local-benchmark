@@ -1,5 +1,7 @@
 package org.backend.benchmark;
 
+import java.util.ArrayList;
+
 import static org.backend.benchmark.utilities.TrafficSimulator.simulateCPULatency;
 import static org.backend.benchmark.utilities.TrafficSimulator.simulateIOLatency;
 
@@ -14,10 +16,12 @@ public class Main {
     private static String driver() throws InterruptedException {
         // returns a string post completion of the results
         // calls network + cpu back to back 50  times
-        for (int i=0; i<50; i++) {
-             simulateIOLatency();
-             simulateCPULatency();
+        ArrayList<String> gather = new ArrayList<String>();
+        for (int i=0; i<100; i++) {
+             String ioResult = simulateIOLatency();
+             String cpuResult = simulateCPULatency();
+             gather.add(cpuResult);
         }
-        return "Hi";
+        return String.join(" ", gather);
     }
 }
