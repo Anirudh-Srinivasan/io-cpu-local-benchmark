@@ -7,14 +7,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class TrafficSimulator {
-    public static String simulateIOLatency() throws InterruptedException {
+    public String simulateIOLatency() throws InterruptedException {
         // ~[260-400]ms
         Random rand = new Random();
         long sleepTime = (long) ((0.26 + rand.nextDouble() * (0.42 - 0.26)) * 1000);
         Thread.sleep(sleepTime);
         return "Result";
     }
-    public static String simulateCPULatency() throws InterruptedException {
+    public String simulateCPULatency(String input) throws InterruptedException {
         // ~[260-400]ms
         for(int i=0; i<6423; i++){
             long numberToHash = 123456789L + 1000*i;

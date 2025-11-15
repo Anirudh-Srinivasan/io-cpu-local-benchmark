@@ -1,12 +1,16 @@
-# Synch run results
+# Threads run results
 
-Looped Io call -> cpu call back to back for 100 times, collecting the result
+Idea
+* Create threads [io+cpu], start all of them in a loop
+* join all threads to let them to complete
+* collect their results
+
 
 | Sno | Run Time (ms) |
 |-----|---------------|
-| 1   | 39306.42      |
-| 2   | 39730.92      |
-| 3   | 38751.84      |
-| 4   | 38966.17      |
-| 5   | 39312.48      |
-| Average | 39213.57      |
+| 1   | 3124.85       |
+| 2   | 2833.06       |
+| 3   | 2745.07       |
+| 4   | 2683.87       |
+| 5   | 2939.68       |
+| Average | 2865.31       |
