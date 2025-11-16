@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 public class Main {
-    static ExecutorService executor = Executors.newFixedThreadPool(16); // cpu_count*(1+(1/1)) = 8*2 = 16;
+    static ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor(); // creates a new virtual thread for each task submitted, its unbounded
     public static void main(String[] args) throws Exception {
 
         long st = System.nanoTime();
@@ -37,5 +36,8 @@ public class Main {
             System.out.printf("Time taken: %.2f" , millis);
             System.out.println("\nResult: " + result);
         });
+        combinedResultsFromFutures.join();
+        // here join is necessary otherwise the
+        // jvm rapidly closes the program killing threads
     }
 }
