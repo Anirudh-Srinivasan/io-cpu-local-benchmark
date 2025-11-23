@@ -4,13 +4,15 @@ import java.util.concurrent.Callable;
 
 public class CombinedWorker implements Callable<String> {
     private final TrafficSimulator trafficSimulator;
-    public CombinedWorker() {
+    private final String input;
+    public CombinedWorker(String nameToHash) {
         trafficSimulator = new TrafficSimulator();
+        this.input = nameToHash;
     }
     @Override
     public String call() throws RuntimeException {
         try {
-            String input = trafficSimulator.simulateIOLatency();
+            trafficSimulator.simulateIOLatency();
             return trafficSimulator.simulateCPULatency(input);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

@@ -10,6 +10,17 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.7</version>
+    </parent>
+
     <name>io-cpu-local-benchmark</name>
     <description>Java project for benchmarking CPU and I/O performance locally</description>
 
@@ -25,6 +36,21 @@
     <!-- Dependencies -->
     <dependencies>
         <!-- Other dependencies can be added as needed -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Actuator endpoints (/actuator/**, including /actuator/metrics) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Prometheus registry for Micrometer -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
     </dependencies>
 
     <!-- Build Configuration -->
@@ -38,6 +64,21 @@
                 <configuration>
                     <source>21</source> <!-- Set Java version here -->
                     <target>21</target> <!-- Set Java version here -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.5.7</version> <!-- if needed -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.backend.benchmark.ApiController</mainClass> <!-- your fully qualified main class -->
                 </configuration>
             </plugin>
         </plugins>
